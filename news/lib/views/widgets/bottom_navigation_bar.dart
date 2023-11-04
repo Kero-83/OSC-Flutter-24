@@ -4,19 +4,6 @@ import 'package:news/views/screens/favourite_screen.dart';
 import 'package:news/views/screens/home_screen.dart';
 import 'package:news/views/screens/search_screen.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BottomNavigationBarExample(),
-    );
-  }
-}
-
 class BottomNavigationBarExample extends StatefulWidget {
   @override
   _BottomNavigationBarExampleState createState() =>
@@ -28,7 +15,7 @@ class _BottomNavigationBarExampleState
   int _currentIndex = 0;
 
   // Define your individual pages or screens here
-  final List<Widget> _pages = [
+  final List<Widget> _pages = const [
     HomeScreen(),
     SearchScrean(),
     FavouriteScreen(),
@@ -46,11 +33,11 @@ class _BottomNavigationBarExampleState
             _currentIndex = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.black,
+              size: 30,
             ),
             label: 'Home',
           ),
