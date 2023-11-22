@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DotNavigatorBarExample extends StatefulWidget {
+  const DotNavigatorBarExample({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DotNavigatorBarExampleState createState() => _DotNavigatorBarExampleState();
 }
 
 class _DotNavigatorBarExampleState extends State<DotNavigatorBarExample> {
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   final List<String> pages = ["Page 1", "Page 2", "Page 3", "Page 4"];
@@ -31,7 +34,7 @@ class _DotNavigatorBarExampleState extends State<DotNavigatorBarExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dot Navigator Bar Example"),
+        title: const Text("Dot Navigator Bar Example"),
       ),
       body: Column(
         children: <Widget>[
@@ -42,7 +45,7 @@ class _DotNavigatorBarExampleState extends State<DotNavigatorBarExample> {
                   .map((page) => Center(
                         child: Text(
                           page,
-                          style: TextStyle(fontSize: 24),
+                          style: const TextStyle(fontSize: 24),
                         ),
                       ))
                   .toList(),
@@ -62,7 +65,7 @@ class _DotNavigatorBarExampleState extends State<DotNavigatorBarExample> {
         return Container(
           width: 8.0,
           height: 8.0,
-          margin: EdgeInsets.symmetric(horizontal: 4.0),
+          margin: const EdgeInsets.symmetric(horizontal: 4.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: index == _currentPage ? Colors.blue : Colors.grey,

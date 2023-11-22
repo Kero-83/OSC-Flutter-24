@@ -1,10 +1,25 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:news/views/screens/account_screen.dart';
-import 'package:news/views/screens/favourite_screen.dart';
-import 'package:news/views/screens/home_screen.dart';
-import 'package:news/views/screens/search_screen.dart';
+import 'package:news/views/account_screen.dart';
+import 'package:news/views/favourite_screen.dart';
+import 'package:news/views/home_screen.dart';
+import 'package:news/views/search_screen.dart';
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: BottomNavigationBarExample(),
+    );
+  }
+}
 
 class BottomNavigationBarExample extends StatefulWidget {
+  const BottomNavigationBarExample({super.key});
+
   @override
   _BottomNavigationBarExampleState createState() =>
       _BottomNavigationBarExampleState();
@@ -15,11 +30,11 @@ class _BottomNavigationBarExampleState
   int _currentIndex = 0;
 
   // Define your individual pages or screens here
-  final List<Widget> _pages = const [
-    HomeScreen(),
-    SearchScrean(),
-    FavouriteScreen(),
-    AccountScreen(),
+  final List<Widget> _pages = [
+    const HomeScreen(),
+    const SearchScrean(),
+    const FavouriteScreen(),
+    const AccountScreen(),
   ];
 
   @override
@@ -42,15 +57,24 @@ class _BottomNavigationBarExampleState
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 30),
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, size: 30),
+            icon: Icon(
+              Icons.favorite,
+              size: 30,
+            ),
             label: 'Favourite',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, size: 30),
+            icon: Icon(
+              Icons.person,
+              size: 30,
+            ),
             label: 'Account',
           ),
         ],

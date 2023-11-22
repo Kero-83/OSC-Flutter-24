@@ -40,6 +40,8 @@ dependencies:
   dot_navigation_bar: ^1.0.2
   responsive_sizer: ^3.2.0
   curved_navigation_bar: ^1.0.3
+  dio: ^5.3.3
+  meta: ^1.10.0
 
 dev_dependencies:
   flutter_test:
