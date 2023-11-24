@@ -6,17 +6,6 @@ import 'package:news/views/favourite_screen.dart';
 import 'package:news/views/home_screen.dart';
 import 'package:news/views/search_screen.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: BottomNavigationBarExample(),
-    );
-  }
-}
-
 class BottomNavigationBarExample extends StatefulWidget {
   const BottomNavigationBarExample({super.key});
 
@@ -31,7 +20,7 @@ class _BottomNavigationBarExampleState
 
   // Define your individual pages or screens here
   final List<Widget> _pages = [
-    const HomeScreen(),
+    HomeScreen(),
     const SearchScrean(),
     const FavouriteScreen(),
     const AccountScreen(),
