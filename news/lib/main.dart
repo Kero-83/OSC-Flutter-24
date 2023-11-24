@@ -10,7 +10,7 @@ import 'package:news/widgets/bottom_navigation_bar.dart';
 void main() {
   runApp(BlocProvider(
     create: (context) => DataRecivingCubit(),
-    child: NewsApp(),
+    child: const NewsApp(),
   ));
 }
 
