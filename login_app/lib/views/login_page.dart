@@ -1,8 +1,11 @@
 // ignore_for_file: unused_local_variable, library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors
 
+import 'dart:html';
 
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:login_app/helper/show_snackbar.dart';
 import 'package:login_app/views/registration_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,9 +20,33 @@ class _LoginPageState extends State<LoginPage> {
   void _login() {
     String email = _emailController.text;
     String password = _passwordController.text;
-    // Perform login logic here
-    // print('Email: $email');
-    // print('Password: $password');
+    try {
+      final user = FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-credential")
+        showSnackBar(context, "Invalid Credential");
+    } catch (e) {
+      print(e);
+    }
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Scaffold(
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pop(context);
+                      },
+                      child: Text("Sign out"),
+                    ),
+                  ),
+                )));
+    _emailController.clear();
+    _passwordController.clear();
   }
 
   void _navigateToRegistration() {
@@ -46,8 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: 'Email',
                 border: OutlineInputBorder(),
               ),
-              style:
-                  TextStyle(color: Colors.white), // Text color for dark theme
+              style: TextStyle(color: Colors.white),
             ),
             SizedBox(height: 16.0),
             TextField(
@@ -57,8 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
-              style:
-                  TextStyle(color: Colors.white), // Text color for dark theme
+              style: TextStyle(color: Colors.white),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
@@ -68,9 +93,6 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 16.0),
             TextButton(
               onPressed: _navigateToRegistration,
-              style: TextButton.styleFrom(
-                  // primary: Colors.blueAccent, // Text color for dark theme
-                  ),
               child: Text('Don\'t have an account?   Register here'),
             ),
           ],

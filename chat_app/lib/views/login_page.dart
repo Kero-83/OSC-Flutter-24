@@ -17,12 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   void _login() async {
     String email = _emailController.text;
     String password = _passwordController.text;
-    // Perform login logic here
-    // print('Email: $email');
-    // print('Password: $password');
     try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      var user = await auth.signInWithEmailAndPassword(
+      var user = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -31,14 +27,6 @@ class _LoginPageState extends State<LoginPage> {
         MaterialPageRoute(builder: (context) => Scaffold()),
       );
     } on FirebaseAuthException catch (e) {
-      // if (e.code == "user-not-found") {
-      //   showSnackBarText(context, "User Not Found!");
-      // } else if (e.code == "wrong-password") {
-      //   showSnackBarText(context, "Wrong Password!");
-      // } else {
-      //   showSnackBarText(context, e.toString());
-      // }
-      print(e.code);
       if (e.code == 'user-not-found') {
         showSnackBarText(context, "User Not Found!");
       } else if (e.code == 'wrong-password') {

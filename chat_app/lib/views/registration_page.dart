@@ -19,21 +19,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
     try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      var user = await auth.createUserWithEmailAndPassword(
+      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      // print('Email: $email');
-      // print('Password: $password');
-      // print(user.user!.displayName);
-      // print("user created");
       showSnackBarText(context, "Registraion Successed!");
     } on FirebaseAuthException catch (e) {
-      // print('Email: $email');
-      // print('Password: $password');
-      // print("FAILED");
-      print(e);
       if (e.code == "weak-password") {
         showSnackBarText(context, "Weak Password");
       }
